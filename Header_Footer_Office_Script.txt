@@ -1,0 +1,17 @@
+function main(workbook: ExcelScript.Workbook,headertext:string,footertext:string) {
+  // Get the active worksheet
+  let sheet = workbook.getActiveWorksheet();
+
+  // Get the page layout of the worksheet
+  let pageLayout = sheet.getPageLayout();
+
+  // Set the headers and footers for the first page
+  let firstPageHeadersFooters = pageLayout.getHeadersFooters().getFirstPage();
+  firstPageHeadersFooters.setCenterHeader(headertext);
+  firstPageHeadersFooters.setLeftFooter(footertext);
+
+  // Set the headers and footers for the other pages
+  let otherPagesHeadersFooters = pageLayout.getHeadersFooters().getDefaultForAllPages();
+  otherPagesHeadersFooters.setCenterHeader(headertext);
+  otherPagesHeadersFooters.setLeftFooter(footertext);
+}
